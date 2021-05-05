@@ -33,6 +33,29 @@ def formarBinario(real):
 
     return (binario)
 
+def aproxMaior(binario):
+    newBIN = ""
+    editado = [".",".",".",".",".",".",".",".",".",".",".",".","."] #A finalidade disso é substituir os pontos pelo valor binario acrescentado, 
+                                                                    #como pode ocorrer de mudar quase todo o binario pensei nessa forma, onde basta substituir
+    casa = len(binario) - 1
+    original = 0
+    
+    for x in range(casa, 0, -1):
+        if binario[x] == "1":
+            editado.insert(x, binario[x].replace("1","0"))
+        else:
+            editado.insert(x, binario[x].replace("0","1"))
+            original = x
+            break
+        
+    editado = str(editado).replace(".","").replace("[","").replace("'"
+    ,"").replace("]","").replace(",","").replace("","").replace(" ","")
+    
+    for y in range(0, original):
+        newBIN += binario[y]
+        
+    return (newBIN+editado)
+
 real = float(input("Digite um valor entre 0 e 1: "))
 
 bin_string = str(real)
@@ -48,13 +71,14 @@ if real > 0.0 and real < 1.0:
     for _ in range(0, len(binario)):
         maior += binario[_]
         newMENOR += binario[_]
+        newMAIOR = aproxMaior(maior)
 
         bits += 1
 
         if bits >= 5:
             print(f"\nCom {_+1} bits")
             print(f"Aproximação a menor: {newMENOR}")
-            print(f"Aproximação a maior: ")
+            print(f"Aproximação a maior: {newMAIOR}")
         if bits >= 12:
             break
 else:
