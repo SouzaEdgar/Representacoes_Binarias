@@ -56,6 +56,17 @@ def aproxMaior(binario):
         
     return (newBIN+editado)
 
+def formarExato(binario):
+    bina = binario
+    exato = 0.0
+
+    for x in range(0, len(bina)):
+        if bina[x] == "1":
+            exato += 2 ** -(x+1)
+
+    return exato
+
+
 real = float(input("Digite um valor entre 0 e 1: "))
 
 bin_string = str(real)
@@ -77,8 +88,8 @@ if real > 0.0 and real < 1.0:
 
         if bits >= 5:
             print(f"\nCom {_+1} bits")
-            print(f"Aproximação a menor: {newMENOR}")
-            print(f"Aproximação a maior: {newMAIOR}")
+            print(f"Aproximação a menor: {newMENOR} -> {formarExato(newMENOR)} com erro = ")
+            print(f"Aproximação a maior: {newMAIOR} -> {formarExato(newMAIOR)} com erro = ")
         if bits >= 12:
             break
 else:
